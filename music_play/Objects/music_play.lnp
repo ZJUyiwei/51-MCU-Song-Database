@@ -1,0 +1,3 @@
+".\Objects\HappySong.obj" 
+TO ".\Objects\music_play" 
+PRINT(".\Listings\music_play.m51") RAMSIZE(256) 

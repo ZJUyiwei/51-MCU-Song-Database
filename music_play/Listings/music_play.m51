@@ -1,0 +1,117 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/04/2021  22:20:12  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\HappySong.obj TO .\Objects\music_play PRINT (.\Listings\music_play.m51) RAMSIZE (2
+>> 56)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\HappySong.obj (HAPPYSONG)
+
+
+LINK MAP OF MODULE:  .\Objects\music_play (HAPPYSONG)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     030FH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\music_play (HAPPYSONG)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        HAPPYSONG
+  C:0083H         SYMBOL        DEL2
+  C:0085H         SYMBOL        DEL3
+  C:0087H         SYMBOL        DEL4
+  C:0067H         SYMBOL        DEL_NS
+  C:0081H         SYMBOL        DLY125MS
+  B:00A8H.7       SYMBOL        EA
+  C:0071H         SYMBOL        END0
+  B:00A8H.1       SYMBOL        ET0
+  C:008EH         SYMBOL        INT00
+  C:0037H         SYMBOL        MUSIC0
+  C:003AH         SYMBOL        MUSIC1
+  C:004FH         SYMBOL        MUSIC2
+  B:0090H.0       SYMBOL        OUTPUT
+  D:0090H         SYMBOL        P1
+  C:0030H         SYMBOL        START
+  C:02EFH         SYMBOL        TABLE1
+  C:009FH         SYMBOL        TABLE_FISH
+  C:0165H         SYMBOL        TABLE_HAPPY
+  C:01A6H         SYMBOL        TABLE_LOVE
+  C:028CH         SYMBOL        TABLE_MOHE
+  C:0097H         SYMBOL        TABLE_ORDER
+  C:011FH         SYMBOL        TABLE_WEST
+  D:008CH         SYMBOL        TH0
+  D:008AH         SYMBOL        TL0
+  D:0089H         SYMBOL        TMOD
+  B:0088H.4       SYMBOL        TR0
+  C:0000H         LINE#         5
+  C:000BH         LINE#         7
+  C:0030H         LINE#         9
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/04/2021  22:20:12  PAGE 2
+
+
+  C:0033H         LINE#         10
+  C:0035H         LINE#         11
+  C:0037H         LINE#         12
+  C:0038H         LINE#         13
+  C:003AH         LINE#         14
+  C:003DH         LINE#         15
+  C:003FH         LINE#         16
+  C:0040H         LINE#         17
+  C:0042H         LINE#         18
+  C:0044H         LINE#         19
+  C:0046H         LINE#         20
+  C:0048H         LINE#         21
+  C:004AH         LINE#         22
+  C:004BH         LINE#         23
+  C:004DH         LINE#         24
+  C:004FH         LINE#         26
+  C:0052H         LINE#         27
+  C:0054H         LINE#         28
+  C:0055H         LINE#         29
+  C:0057H         LINE#         30
+  C:0058H         LINE#         31
+  C:005AH         LINE#         32
+  C:005CH         LINE#         33
+  C:005EH         LINE#         34
+  C:0060H         LINE#         35
+  C:0061H         LINE#         36
+  C:0063H         LINE#         37
+  C:0065H         LINE#         38
+  C:0067H         LINE#         40
+  C:006AH         LINE#         41
+  C:006DH         LINE#         42
+  C:006FH         LINE#         43
+  C:0071H         LINE#         45
+  C:0073H         LINE#         46
+  C:0076H         LINE#         47
+  C:0079H         LINE#         48
+  C:007CH         LINE#         49
+  C:007FH         LINE#         50
+  C:0081H         LINE#         53
+  C:0083H         LINE#         54
+  C:0085H         LINE#         55
+  C:0087H         LINE#         56
+  C:0089H         LINE#         57
+  C:008BH         LINE#         58
+  C:008DH         LINE#         59
+  C:008EH         LINE#         61
+  C:0091H         LINE#         62
+  C:0094H         LINE#         63
+  C:0096H         LINE#         64
+  -------         ENDMOD        HAPPYSONG
+
+Program Size: data=8.0 xdata=0 code=783
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

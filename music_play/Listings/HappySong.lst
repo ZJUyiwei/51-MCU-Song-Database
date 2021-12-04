@@ -1,0 +1,323 @@
+A51 MACRO ASSEMBLER  HAPPYSONG                                                            12/04/2021 22:20:12 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\HappySong.obj
+ASSEMBLER INVOKED BY: D:\Keil_v5\C51\BIN\A51.EXE HappySong.asm SET(SMALL) DEBUG PRINT(.\Listings\HappySong.lst) OBJECT(.
+                      \Objects\HappySong.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+  0090                 2     OUTPUT BIT P1.0
+                       3             
+0000                   4     ORG 0000H
+0000 020030            5             LJMP START
+000B                   6     ORG 000BH
+000B 02008E            7             LJMP INT00
+0030                   8     ORG 0030H
+0030 758901            9     START:MOV TMOD, #01H
+0033 D2A9             10             SETB ET0
+0035 D2AF             11             SETB EA
+0037 E4               12     MUSIC0:CLR A
+0038 F540             13             MOV 40H, A 
+003A 90028C           14     MUSIC1:MOV DPTR, #TABLE_Mohe  ; here is your music database
+003D E540             15             MOV A, 40H
+003F 93               16             MOVC A, @A+DPTR 
+0040 602F             17             JZ END0 
+0042 F530             18             MOV 30H, A 
+0044 540F             19             ANL A, #0FH 
+0046 F531             20             MOV 31H, A 
+0048 E530             21             MOV A, 30H
+004A C4               22             SWAP A
+004B 540F             23             ANL A, #0FH
+004D F532             24             MOV 32H,A 
+                      25             
+004F 9002EF           26     MUSIC2: MOV DPTR,# TABLE1 
+0052 E532             27             MOV A, 32H
+0054 23               28             RL A
+0055 F534             29             MOV 34H,A
+0057 93               30             MOVC A,@A+DPTR
+0058 F58C             31             MOV TH0,A 
+005A F544             32             MOV 44H,A 
+005C 0534             33             INC 34H
+005E E534             34             MOV A,34H
+0060 93               35             MOVC A,@A+DPTR
+0061 F58A             36             MOV TL0,A 
+0063 F545             37             MOV 45H,A
+0065 D28C             38             SETB TR0
+                      39             
+0067 120081           40     DEL_NS:LCALL DLY125ms 
+006A D531FA           41             DJNZ 31H, DEL_NS 
+006D 0540             42             INC 40H 
+006F 80C9             43             SJMP MUSIC1
+                      44             
+0071 C28C             45     END0: CLR TR0 
+0073 120081           46             LCALL DLY125ms
+0076 120081           47             LCALL DLY125ms
+0079 120081           48             LCALL DLY125ms
+007C 120081           49             LCALL DLY125ms
+007F 80B6             50             SJMP MUSIC0
+                      51             
+                      52             
+0081 7B05             53     DLY125ms: MOV R3, #5
+0083 7C32             54     DEL2: MOV R4, #50 
+0085 7DFA             55     DEL3: MOV R5, #250 
+0087 DDFE             56     DEL4: DJNZ R5, DEL4
+0089 DCFA             57             DJNZ R4, DEL3
+A51 MACRO ASSEMBLER  HAPPYSONG                                                            12/04/2021 22:20:12 PAGE     2
+
+008B DBF6             58             DJNZ R3, DEL2
+008D 22               59             RET
+                      60             
+008E 85448C           61     INT00:MOV TH0, 44H 
+0091 85458A           62             MOV TL0, 45H
+0094 B290             63             CPL OUTPUT
+0096 32               64             RETI
+                      65     
+                      66     
+                      67     
+0097                  68     TABLE_order:
+0097 44546474         69     DB  44H, 54H, 64H, 74H, 84H, 94H, 0A4H, 00H
+009B 8494A400                
+                      70     
+009F                  71     TABLE_fish: 
+009F 22424252         72     DB  22H, 42H, 42H, 52H, 52H, 62H, 62H, 81H
+00A3 52626281                
+00A7 91866254         73     DB  91H, 86H, 62H, 54H, 04H, 22H, 42H, 42H
+00AB 04224242                
+00AF 52526264         74     DB  52H, 52H, 62H, 64H, 24H, 18H, 04H, 22H
+00B3 24180422                
+00B7 42425252         75     DB  42H, 42H, 52H, 52H, 62H, 62H, 81H, 91H
+00BB 62628191                
+00BF 86625404         76     DB  86H, 62H, 54H, 04H, 52H, 62H, 24H, 52H
+00C3 52622452                
+00C7 62221228         77     DB  62H, 22H, 12H, 28H, 04H, 22H, 42H, 56H
+00CB 04224256                
+00CF 42242242         78     DB  42H, 24H, 22H, 42H, 56H, 42H, 64H, 62H
+00D3 56426462                
+00D7 82949282         79     DB  82H, 94H, 92H, 82H, 62H, 52H, 44H, 54H
+00DB 62524454                
+00DF 68224256         80     DB  68H, 22H, 42H, 56H, 42H, 24H, 22H, 42H
+00E3 42242242                
+00E7 54446852         81     DB  54H, 44H, 68H, 52H, 62H, 24H, 52H, 62H
+00EB 62245262                
+00EF 22122404         82     DB  22H, 12H, 24H, 04H, 04H
+00F3 04                      
+00F4 6282B6A2         83     DB  62H, 82H,0B6H,0A2H, 64H, 62H, 52H, 44H
+00F8 64625244                
+00FC 42526462         84     DB  42H, 52H, 64H, 62H, 52H, 44H, 92H,0B2H
+0100 524492B2                
+0104 A2928252         85     DB 0A2H, 92H, 82H, 52H, 68H, 04H, 62H, 82H
+0108 68046282                
+010C B6A26462         86     DB 0B6H,0A2H, 64H, 62H, 52H, 44H, 42H, 52H
+0110 52444252                
+0114 68526224         87     DB  68H, 52H, 62H, 24H, 52H, 62H, 22H, 12H
+0118 52622212                
+011C 2C0400           88     DB  2CH, 04H, 00H
+                      89             
+                      90             
+011F                  91     TABLE_west:
+011F 22442266         92     DB 22H,44H,22H,66H,52H, 52H,46H,48H, 32H,24H,32H,56H,62H
+0123 52524648                
+0127 32243256                
+012B 62                      
+012C 42262868         93     DB 42H,26H,28H,68H,96H,62H,94H,82H,72H,68H,48H,52H,64H,72H,62H
+0130 96629482                
+0134 72684852                
+0138 647262                  
+013B 58582464         94     DB 58H, 58H, 24H,64H,52H,62H,22H,4CH,64H,52H,34H,62H,52H,22H,42H,52H
+013F 5262224C                
+0143 64523462                
+0147 52224252                
+014B 68686896         95     DB 68H, 68H, 68H,96H,62H,94H,82H,72H,66H,82H,54H,72H,62H,52H,44H
+014F 62948272                
+0153 66825472                
+A51 MACRO ASSEMBLER  HAPPYSONG                                                            12/04/2021 22:20:12 PAGE     3
+
+0157 625244                  
+015A 5C645234         96     DB 5CH,64H,52H,34H,62H,32H,22H,12H,28H, 28H, 00H
+015E 62322212                
+0162 282800                  
+                      97     
+0165 64647484         98     TABLE_happy: DB 64H, 64H,74H,84H,84H,74H,64H,54H
+0169 84746454                
+016D 44445464         99     DB 44H, 44H,54H,64H,66H,52H,58H
+0171 665258                  
+0174 64647484        100     DB 64H, 64H,74H,84H,84H,74H,64H,54H
+0178 84746454                
+017C 44445464        101     DB 44H, 44H,54H,64H,56H,42H,48H;
+0180 564248                  
+0183 54546444        102     DB 54H, 54H,64H,44H,54H,62H,72H,64H,44H
+0187 54627264                
+018B 44                      
+018C 54627264        103     DB 54H, 62H,72H,64H,54H,44H,54H,14H,64H
+0190 54445414                
+0194 64                      
+0195 64647484        104     DB 64H, 64H,74H,84H,84H,74H,64H,72H,52H
+0199 84746472                
+019D 52                      
+019E 44445464        105     DB 44H, 44H,54H,64H,56H,42H,48H,00H
+01A2 56424800                
+                     106     
+                     107     
+                     108     
+01A6                 109     TABLE_LOVE:
+01A6 0C024111        110     DB 0CH,02H,41H,11H, 23H,21H,22H,12H,43H,41H,02H,41H,11H, 23H,21H,22H,12H,43H,61H,02H,41H,11H
+01AA 23212212                
+01AE 43410241                
+01B2 11232122                
+01B6 12436102                
+01BA 4111                    
+01BC 93919191        111     DB 93H,91H,91H,91H,82H,43H,41H,41H,41H,52H, 43H,41H,01H,41H,22H,64H,04H, 43H,41H,01H,51H,52
+                             H,63H,41H,02H,11H,21H
+01C0 82434141                
+01C4 41524341                
+01C8 01412264                
+01CC 04434101                
+01D0 51526341                
+01D4 021121                  
+01D7 43410151        112     DB 43H,41H,01H,51H,52H,63H,41H,02H,22H, 42H,21H,41H,02H,22H,42H,21H,41H,02H,42H, 71H,62H,41
+                             H,42H,22H,64H,04H
+01DB 52634102                
+01DF 22422141                
+01E3 02224221                
+01E7 41024271                
+01EB 62414222                
+01EF 6404                    
+01F1 43410151        113     DB 43H,41H,01H,51H,52H,63H,41H,02H,11H,21H, 43H,41H,01H,51H,52H,63H,41H,02H,22H
+01F5 52634102                
+01F9 11214341                
+01FD 01515263                
+0201 410222                  
+0204 42214102        114     DB 42H,21H,41H,02H,22H,42H,21H,41H,02H,42H, 71H,62H,41H,42H,52H,44H,02H,01H,01H
+0208 22422141                
+020C 02427162                
+0210 41425244                
+0214 020101                  
+                     115     ;DB 44H,04H,02H,52H,52H,02H, 64H,04H,42H,52H,62H,02H
+                     116     ;DB 44H,04H,02H,52H,52H,02H, 64H,04H,42H,62H,22H,02H
+                     117     ;DB 44H,04H,02H,52H,52H,02H, 64H,04H,42H,52H,62H,02H
+                     118     ;DB 44H,04H,02H,52H,52H,02H, 64H,04H,42H,62H,42H,02H
+0217 62726272        119     DB 62H,72H,62H,72H,82H,02H,62H,72H, 62H,72H,82H,02H,82H,72H,62H,72H
+021B 82026272                
+A51 MACRO ASSEMBLER  HAPPYSONG                                                            12/04/2021 22:20:12 PAGE     4
+
+021F 62728202                
+0223 82726272                
+0227 61414141        120     DB 61H,41H,41H,41H,41H,41H,22H,61H,42H,41H,41H,41H,22H, 41H,42H,41H,41H,41H,22H,64H,04H
+022B 41412261                
+022F 42414141                
+0233 22414241                
+0237 41412264                
+023B 04                      
+023C 62726272        121     DB 62H,72H,62H,72H,82H,02H,62H,72H, 62H,72H,82H,02H,82H,72H,62H,72H
+0240 82026272                
+0244 62728202                
+0248 82726272                
+024C 61414141        122     DB 61H,41H,41H,41H,41H,41H,22H,61H,42H,41H,41H,41H,52H, 41H,42H,41H,41H,41H,62H,44H,04H
+0250 41412261                
+0254 42414141                
+0258 52414241                
+025C 41416244                
+0260 04                      
+0261 84645462        123     DB 84H,64H,54H,62H,62H, 52H,42H,52H,62H,64H,02H,62H, 94H,64H,54H,42H,42H, 42H,52H,62H,52H,5
+                             4H,04H
+0265 62524252                
+0269 62640262                
+026D 94645442                
+0271 42425262                
+0275 525404                  
+0278 84645462        124     DB 84H,64H,54H,62H,62H, 52H,42H,52H,62H,64H,02H,62H, 94H,64H,44H,64H, 44H,08H,04H,00H
+027C 62524252                
+0280 62640262                
+0284 94644464                
+0288 44080400                
+                     125     
+028C                 126     TABLE_Mohe:
+028C 62222231        127     DB 62H,22H,22H,31H,43H,52H,62H,42H,62H,62H,62H,81H,65H
+0290 43526242                
+0294 62626281                
+0298 65                      
+0299 02616152        128     DB 02H,61H,61H,52H,52H,52H,61H,75H
+029D 52526175                
+02A1 02126262        129     DB 02H,12H,62H,62H,62H,51H,71H,34H
+02A5 62517134                
+02A9 04223242        130     DB 04H,22H,32H,42H,51H,63H,42H,62H,42H,62H,62H,62H,81H,65H
+02AD 51634262                
+02B1 42626262                
+02B5 8165                    
+02B7 02616152        131     DB 02H,61H,61H,52H,52H,52H,62H,74H
+02BB 52526274                
+02BF 04126262        132     DB 04H,12H,62H,62H,52H,0A4H
+02C3 52A4                    
+02C5 04966222        133     DB 04H,96H,62H,22H
+02C9 02228276        134     DB 02H,22H,82H,76H,61H,75H
+02CD 6175                    
+02CF 04865212        135     DB 04H,86H,52H,12H
+02D3 02128266        136     DB 02H,12H,82H,66H,72H,62H,72H
+02D7 726272                  
+02DA 02966222        137     DB 02H,96H,62H,22H
+02DE 02228276        138     DB 02H,22H,82H,76H,61H,75H
+02E2 6175                    
+02E4 02726272        139     DB 02H,72H,62H,72H,61H,72H,71H,62H,72H,6CH, 00H
+02E8 61727162                
+02EC 726C00                  
+                     140     
+                     141     
+                     142     
+                     143     ;table 1 is the frequency match-table
+02EF 0000FB04        144     TABLE1:DB 00H,00H,0FBH, 04H,0FBH,0CCH,0FCH,0CH ;LOW 5_7
+02F3 FBCCFC0C                
+A51 MACRO ASSEMBLER  HAPPYSONG                                                            12/04/2021 22:20:12 PAGE     5
+
+02F7 FC44FCAC        145     DB 0FCH, 44H,0FCH,0ACH,0FDH,09H ;CENTER 1_3
+02FB FD09                    
+02FD FD34FD82        146     DB 0FDH, 34H,0FDH,82H,0FDH,0C8H ;CENTER 4_5
+0301 FDC8                    
+0303 FE06FE22        147     DB 0FEH, 06H,0FEH,22H,0FEH,56H ;CENTER 6-HIGH 1
+0307 FE56                    
+0309 FE85FE9A        148     DB 0FEH, 85H,0FEH,9AH,0FEH,0C1H ;HIGH 2_5
+030D FEC1                    
+                     149     
+                     150     END
+A51 MACRO ASSEMBLER  HAPPYSONG                                                            12/04/2021 22:20:12 PAGE     6
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DEL2 . . . . . . .  C ADDR   0083H   A   
+DEL3 . . . . . . .  C ADDR   0085H   A   
+DEL4 . . . . . . .  C ADDR   0087H   A   
+DEL_NS . . . . . .  C ADDR   0067H   A   
+DLY125MS . . . . .  C ADDR   0081H   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+END0 . . . . . . .  C ADDR   0071H   A   
+ET0. . . . . . . .  B ADDR   00A8H.1 A   
+INT00. . . . . . .  C ADDR   008EH   A   
+MUSIC0 . . . . . .  C ADDR   0037H   A   
+MUSIC1 . . . . . .  C ADDR   003AH   A   
+MUSIC2 . . . . . .  C ADDR   004FH   A   
+OUTPUT . . . . . .  B ADDR   0090H.0 A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+START. . . . . . .  C ADDR   0030H   A   
+TABLE1 . . . . . .  C ADDR   02EFH   A   
+TABLE_FISH . . . .  C ADDR   009FH   A   
+TABLE_HAPPY. . . .  C ADDR   0165H   A   
+TABLE_LOVE . . . .  C ADDR   01A6H   A   
+TABLE_MOHE . . . .  C ADDR   028CH   A   
+TABLE_ORDER. . . .  C ADDR   0097H   A   
+TABLE_WEST . . . .  C ADDR   011FH   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
